@@ -1,0 +1,18 @@
+:root {
+  --global-mid-grey: hsl(0, 0%, 47%);
+  --global-blue: hsl(217, 91%, 60%);
+  --global-green: hsl(158, 64%, 52%);
+  --global-purple: hsl(292, 84%, 61%);
+  --global-orange: hsl(25, 95%, 53%);
+
+  --global-pastel-pink: hsl(348, 68%, 78%);
+  --global-pastel-orange: hsl(10, 62%, 69%);
+  --global-pastel-yellow: hsl(56, 89%, 67%);
+  --global-pastel-green: hsl(100, 60%, 64%);
+  --global-pastel-blue: hsl(180, 35%, 81%);
+  --global-pastel-green: hsl(282, 26%, 75%);
+}
+
+* {
+  font-family: "IBM Plex Sans Thai Looped", sans-serif;
+}
