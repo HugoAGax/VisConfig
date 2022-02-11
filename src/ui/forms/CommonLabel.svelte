@@ -16,9 +16,9 @@
   .caption {
     position: absolute;
     left: 10px;
-    background-color: #fff;
-    padding: 4px 8px;
-    top: -14px;
+    background-color: hsl(210, 40%, 98%);
+    padding: 0px 8px;
+    top: -8px;
   }
 
   .label {

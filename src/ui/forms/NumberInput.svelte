@@ -2,6 +2,7 @@
   import CommonInput from "./CommonInput.svelte";
   import "../../variables.css";
   import CommonLabel from "./CommonLabel.svelte";
+  import FormUnit from "./FormUnit.svelte";
 
   export let type: string;
   export let value: string;
@@ -12,17 +13,20 @@
 </script>
 
 <main>
-  <div class="numberinput" component-type={cpt}>
+  <FormUnit className={"numberinput"} borderColor={"hsl(158, 64%, 52%)"}>
     <CommonLabel {type} {name} />
     <CommonInput {type} {name} {value} />
-  </div>
+  </FormUnit>
 </main>
 
 <style>
-  .numberinput {
+  :global(.numberinput) {
     position: relative;
-    border: 1px solid var(--global-green);
     border-radius: 4px;
     padding: 1rem 0.75rem;
+  }
+
+  :global(.numberinput .label) {
+    color: var(--global-green);
   }
 </style>
