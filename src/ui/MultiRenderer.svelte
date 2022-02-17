@@ -8,8 +8,6 @@
   export let dataToClassify: object;
   export let objectName: string;
 
-  console.log(">>> MultiRender", dataToClassify);
-
   let instanceClassifier = new Classifier({
     data: dataToClassify,
     categories: {
@@ -24,7 +22,6 @@
   const finalResult = result.charAt(0).toUpperCase() + result.slice(1);
 
   let toRender = instanceClassifier.classifyAll();
-  console.log('---> TO RENDER', toRender);
 </script>
 
 <div class="multirender">

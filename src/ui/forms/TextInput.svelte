@@ -8,7 +8,6 @@
   export let type: string;
   export let value: string;
   export let name: string;
-  export let cpt: string;
 
   let counter: number = 0;
 </script>

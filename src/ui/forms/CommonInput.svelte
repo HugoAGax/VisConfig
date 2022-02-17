@@ -4,10 +4,14 @@
   export let type: string;
   export let value: string;
   export let name: string;
+
+  const handleKeydown = (e) => {
+    console.log('EVENT', e);
+  }
 </script>
 
 <div class="input-container">
-    <input class="input" id={name} {type} {value} />
+    <input class="input" id={name} {type} {value} on:keydown={handleKeydown}/>
 </div>
 
 <style>

@@ -12,12 +12,10 @@
   let counter: number = 0;
 </script>
 
-<main>
   <FormUnit className={"numberinput"} borderColor={"hsl(158, 64%, 52%)"}>
     <CommonLabel {type} {name} />
     <CommonInput {type} {name} {value} />
   </FormUnit>
-</main>
 
 <style>
   :global(.numberinput) {

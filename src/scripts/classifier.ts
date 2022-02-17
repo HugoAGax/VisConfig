@@ -3,7 +3,6 @@ class Classifier {
     categories: object
 
     constructor(config) {
-        console.log('///CLASIFIER', config);
         Object.assign(this, config);
         this.data = config.data;
         this.categories = config.categories;
