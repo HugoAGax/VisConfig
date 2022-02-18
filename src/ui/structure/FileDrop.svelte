@@ -1,42 +1,17 @@
-<script type="ts">
+<script lang="ts">
   import { createEventDispatcher } from "svelte";
   // import CommonTextarea from "../forms/CommonTextarea.svelte";
 
   const dispatch = createEventDispatcher();
   let textarea;
 
-  const _dispatchFileData = (data) => {
+  const _dispatchFileData = (name, data) => {
     dispatch("upload", {
+      name: name,
       data: data,
     });
   };
   let files: object;
-  //   let prevent = evt => {
-  //     evt.preventDefault();
-  //   };
-
-  //   const handleDrop = ev => {
-  //   console.log('File(s) dropped');
-
-  //   // Prevent default behavior (Prevent file from being opened)
-  //   ev.preventDefault();
-
-  //   if (ev.dataTransfer.items) {
-  //     // Use DataTransferItemList interface to access the file(s)
-  //     for (var i = 0; i < ev.dataTransfer.items.length; i++) {
-  //       // If dropped items aren't files, reject them
-  //       if (ev.dataTransfer.items[i].kind === 'file') {
-  //         var file = ev.dataTransfer.items[i].getAsFile();
-  //         console.log('... file[' + i + '].name = ' + file.name);
-  //       }
-  //     }
-  //   } else {
-  //     // Use DataTransfer interface to access the file(s)
-  //     for (var i = 0; i < ev.dataTransfer.files.length; i++) {
-  //       console.log('... file[' + i + '].name = ' + ev.dataTransfer.files[i].name);
-  //     }
-  //   }
-  // }
 
   const onFileSelected = (e) => {
     let doc = e.target.files[0];
@@ -45,7 +20,7 @@
     fileread.onload = (evt: object) => {
       console.log(evt);
       const content = evt["target"].result;
-      _dispatchFileData(JSON.parse(content));
+      _dispatchFileData(doc["name"], JSON.parse(content));
     };
 
     fileread.readAsText(doc);
@@ -53,7 +28,7 @@
 
   const buttonClickHandler = () => {
     console.log("THIS", textarea.value);
-    _dispatchFileData(JSON.parse(textarea.value));
+    _dispatchFileData("", JSON.parse(textarea.value));
   };
 </script>
 
@@ -89,7 +64,7 @@
   .input-container {
     background-color: #f3e8ff;
     padding: 1rem;
-    border-radius: 0.5rem;
+    border-radius: 0.75rem;
     display: flex;
     height: 20vh;
   }
@@ -115,7 +90,7 @@
     height: 100%;
     font-size: 12px;
     background-color: #faf5ff;
-    border-radius: 4px;
+    border-radius: 0.5rem;
     border: 1px solid #c4b5fd;
   }
 
@@ -125,7 +100,7 @@
   }
 
   .textarea-submit {
-    border-radius: 0.25rem;
+    border-radius: 0.5rem;
     background-color: #a855f7;
     padding: 0.25rem 0.75rem;
     transition: 0.2s;
@@ -154,7 +129,7 @@
   .drop-container {
     height: calc(100% - 2rem);
     border: 1px dashed #c084fc;
-    border-radius: 4px;
+    border-radius: 0.5rem;
     display: flex;
     flex-direction: column;
     justify-content: center;

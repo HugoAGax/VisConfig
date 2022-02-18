@@ -20,7 +20,7 @@
 <style>
   :global(.textinput) {
     position: relative;
-    border-radius: 4px;
+    border-radius: 0.75rem;
     font-family: "IBM Plex Sans Thai Looped", sans-serif;
   }
 

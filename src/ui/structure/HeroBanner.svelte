@@ -1,13 +1,13 @@
 <script lang="ts">
 </script>
 
-  <div class="herobanner">
-    <slot></slot>
-  </div>
+<div class="herobanner">
+  <slot />
+</div>
 
 <style>
   .herobanner {
-    margin: 4rem 1rem;
+    margin: 4rem 1rem 3rem;
     max-width: 800px;
   }
 </style>

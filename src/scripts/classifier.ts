@@ -8,25 +8,44 @@ class Classifier {
         this.categories = config.categories;
     }
 
-    setData (data: object) {
+    setData(data: object) {
         this.data = data;
         return this;
     }
 
-    classifyAll () {
+    classifyAll() {
         let classifier = this;
         let data = this.data;
-        let results: Array<{ 
-            cpt: string, 
+        let results: Array<{
+            cpt: string,
             name: string,
             type: string,
-            value: string  }> = [];
+            value: string
+        }> = [];
 
         Object.keys(data).forEach(prop => {
-            if (data[prop] === undefined || data[prop] === null) {
+            if (data[prop] === undefined) {
+                console.log('>>> Classifier failing data', typeof data[prop]);
+                results.push({
+                    cpt: classifier.categories["string"],
+                    value: "undefined",
+                    name: prop,
+                    type: "undefined"
+                });
                 return;
             }
-    
+
+            if (data[prop] === null) {
+                console.log('>>> Classifier failing data', typeof data[prop]);
+                results.push({
+                    cpt: classifier.categories["string"],
+                    value: "null",
+                    name: prop,
+                    type: "null"
+                });
+                return;
+            }
+
             let type = typeof data[prop];
             switch (type) {
                 case "string":
@@ -37,7 +56,7 @@ class Classifier {
                         name: prop
                     });
                     break;
-    
+
                 case "number":
                     results.push({
                         cpt: classifier.categories[type],
@@ -46,7 +65,7 @@ class Classifier {
                         name: prop
                     });
                     break;
-    
+
                 case "boolean":
                     results.push({
                         cpt: classifier.categories[type],
@@ -55,7 +74,7 @@ class Classifier {
                         name: prop
                     });
                     break;
-    
+
                 case "object":
                     results.push({
                         cpt: classifier.categories[type],

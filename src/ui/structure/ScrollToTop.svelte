@@ -11,7 +11,6 @@
   };
 
   const handleScrollChange = () => {
-    console.log("Scroll Position", window.scrollY);
     if (window.scrollY > 0) {
       hidden = false;
     } else {

@@ -13,13 +13,18 @@
 
   $dataToRender = null;
 
+  let fileName: string;
+  let fileSize: string;
+
   let handleUpload = (e) => {
-    console.log("CATCHED JSON DATA", e);
-    const size = new TextEncoder().encode(JSON.stringify(e.detail.data)).length;
-    const kiloBytes = size / 1024;
-    const megaBytes = kiloBytes / 1024;
-    console.log(size, kiloBytes, megaBytes);
+    const size =
+      (new TextEncoder().encode(JSON.stringify(e.detail.data)).length / 1024)
+        .toFixed(4)
+        .toString() + " kB";
+    console.log(size);
     $dataToRender = e.detail.data;
+    fileName = e.detail.name;
+    fileSize = size;
   };
 </script>
 
@@ -32,8 +37,8 @@
   <ScrollToTop />
 
   {#if $dataToRender}
-    <FileSummary />
     <FormContainer>
+      <FileSummary name={fileName} size={fileSize} />
       <MultiRenderer dataToClassify={$dataToRender} objectName={""} />
     </FormContainer>
   {/if}

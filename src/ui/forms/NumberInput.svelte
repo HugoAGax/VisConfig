@@ -7,20 +7,19 @@
   export let type: string;
   export let value: string;
   export let name: string;
-  export let cpt: string;
 
   let counter: number = 0;
 </script>
 
-  <FormUnit className={"numberinput"} borderColor={"hsl(158, 64%, 52%)"}>
-    <CommonLabel {type} {name} />
-    <CommonInput {type} {name} {value} />
-  </FormUnit>
+<FormUnit className={"numberinput"} borderColor={"hsl(158, 64%, 52%)"}>
+  <CommonLabel {type} {name} />
+  <CommonInput {type} {name} {value} />
+</FormUnit>
 
 <style>
   :global(.numberinput) {
     position: relative;
-    border-radius: 4px;
+    border-radius: 0.75rem;
     padding: 1rem 0.75rem;
   }
 

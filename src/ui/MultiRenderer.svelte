@@ -3,7 +3,6 @@
   import CheckBox from "./forms/CheckBox.svelte";
   import TextInput from "./forms/TextInput.svelte";
   import NumberInput from "./forms/NumberInput.svelte";
-  import CommonLabel from "./forms/CommonLabel.svelte";
 
   export let dataToClassify: object;
   export let objectName: string;
@@ -30,16 +29,16 @@
   {/if}
   {#each toRender as item}
     {#if item.cpt === "TextInput"}
-      <TextInput {...item} />
+      <TextInput type={item.type} name={item.name} value={item.value} />
     {/if}
     {#if item.cpt === "NumberInput"}
-      <NumberInput {...item} />
+      <NumberInput type={item.type} name={item.name} value={item.value} />
     {/if}
     {#if item.cpt === "CheckBox"}
-      <CheckBox {...item} />
+      <CheckBox type={item.type} name={item.name} value={item.value} />
     {/if}
     {#if item.cpt === "MultiRenderer"}
-      <svelte:self dataToClassify={item.value} objectName={item.name}/>
+      <svelte:self dataToClassify={item.value} objectName={item.name} />
     {/if}
   {/each}
 </div>

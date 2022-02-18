@@ -1,5 +1,4 @@
 <script lang="ts">
-  import CommonInput from "./CommonInput.svelte";
   import CommonLabel from "./CommonLabel.svelte";
   import FormUnit from "./FormUnit.svelte";
   import "../../variables.css";
@@ -16,7 +15,6 @@
 
 <FormUnit className={"checkbox"} borderColor={"hsl(25, 95%, 53%)"}>
   <CommonLabel {type} {name} />
-  <CommonInput {type} {name} {value} />
   <CommonDropdown options={dropdownData} selected={dValue} />
 </FormUnit>
 

@@ -9,7 +9,7 @@
   <label class="label" for={name}>
     {name}
     <span>({type})</span>
-</label>
+  </label>
 </div>
 
 <style>
@@ -18,7 +18,7 @@
     left: 10px;
     background-color: hsl(210, 40%, 98%);
     padding: 0px 8px;
-    top: -8px;
+    top: -0.75rem;
   }
 
   .label {
@@ -27,6 +27,6 @@
   }
 
   .label span {
-      color: var(--global-mid-grey);
+    color: var(--global-mid-grey);
   }
 </style>

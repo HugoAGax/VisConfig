@@ -1,17 +1,19 @@
 <script lang="ts">
 </script>
 
-  <div class="formcontainer">
-    <slot></slot>
-  </div>
+<div class="formcontainer">
+  <slot />
+</div>
 
 <style>
   .formcontainer {
     background-color: hsl(210, 40%, 98%);
     max-width: calc(800px - 4rem);
     width: 100%;
-    padding: 1rem 2rem;
-    border-radius: 0.5rem;
+    padding: 2rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 0 3rem hsl(231deg 84% 83% / 30%);
+    border: 1px solid hsl(231deg 84% 83% / 10%);
   }
 
   .formcontainer > :global(.multirender) {
