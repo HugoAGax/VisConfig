@@ -39,11 +39,11 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
+    margin: 0.75rem 0 3rem;
   }
   .cta {
     display: flex;
     align-items: center;
-  
   }
 
   .cta p {
@@ -65,6 +65,7 @@
     color: #666;
     font-weight: 300;
     margin: 12px 0;
+    max-width: 560px;
   }
 
   .json-logo {

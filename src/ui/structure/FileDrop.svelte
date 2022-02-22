@@ -1,6 +1,5 @@
 <script lang="ts">
   import { createEventDispatcher } from "svelte";
-  // import CommonTextarea from "../forms/CommonTextarea.svelte";
 
   const dispatch = createEventDispatcher();
   let textarea;
@@ -27,7 +26,6 @@
   };
 
   const buttonClickHandler = () => {
-    console.log("THIS", textarea.value);
     _dispatchFileData("", JSON.parse(textarea.value));
   };
 </script>

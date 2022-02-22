@@ -2,7 +2,6 @@
   export let name: string;
 
   import { dataToRender } from "./ui/store";
-
   import MultiRenderer from "./ui/MultiRenderer.svelte";
   import FileDrop from "./ui/structure/FileDrop.svelte";
   import FormContainer from "./ui/structure/FormContainer.svelte";
@@ -10,21 +9,35 @@
   import HeroCta from "./ui/structure/HeroCTA.svelte";
   import ScrollToTop from "./ui/structure/ScrollToTop.svelte";
   import FileSummary from "./ui/forms/FileSummary.svelte";
+  import Footer from "./ui/structure/Footer.svelte";
 
   $dataToRender = null;
 
   let fileName: string;
   let fileSize: string;
 
-  let handleUpload = (e) => {
+  let unique = {};
+
+  const restart = () => {
+    unique = {};
+  };
+
+  const handleUpload = (e: object) => {
     const size =
-      (new TextEncoder().encode(JSON.stringify(e.detail.data)).length / 1024)
+      (new TextEncoder().encode(JSON.stringify(e["detail"].data)).length / 1024)
         .toFixed(4)
         .toString() + " kB";
     console.log(size);
-    $dataToRender = e.detail.data;
-    fileName = e.detail.name;
+    $dataToRender = e["detail"].data;
+    window["jsonData"] = $dataToRender;
+    fileName = e["detail"].name;
     fileSize = size;
+    restart();
+  };
+
+  const handleClear = () => {
+    $dataToRender = null;
+    window["jsonData"] = $dataToRender;
   };
 </script>
 
@@ -35,13 +48,16 @@
   </HeroBanner>
 
   <ScrollToTop />
-
   {#if $dataToRender}
-    <FormContainer>
-      <FileSummary name={fileName} size={fileSize} />
-      <MultiRenderer dataToClassify={$dataToRender} objectName={""} />
-    </FormContainer>
+    {#key unique}
+      <FormContainer>
+        <FileSummary name={fileName} size={fileSize} on:clear={handleClear} />
+        <MultiRenderer dataToClassify={$dataToRender} objectName={""} />
+        <FileSummary name={fileName} size={fileSize} on:clear={handleClear} />
+      </FormContainer>
+    {/key}
   {/if}
+  <Footer />
 </main>
 
 <style>
