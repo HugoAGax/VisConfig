@@ -2,6 +2,7 @@
   export let name: string;
 
   import { dataToRender } from "./ui/store";
+  import { addToast } from "./ui/store-toast";
   import MultiRenderer from "./ui/MultiRenderer.svelte";
   import FileDrop from "./ui/structure/FileDrop.svelte";
   import FormContainer from "./ui/structure/FormContainer.svelte";
@@ -10,6 +11,7 @@
   import ScrollToTop from "./ui/structure/ScrollToTop.svelte";
   import FileSummary from "./ui/forms/FileSummary.svelte";
   import Footer from "./ui/structure/Footer.svelte";
+  import Notification from "./ui/structure/Notification.svelte";
 
   $dataToRender = null;
 
@@ -23,16 +25,37 @@
   };
 
   const handleUpload = (e: object) => {
-    const size =
-      (new TextEncoder().encode(JSON.stringify(e["detail"].data)).length / 1024)
+    const transfer = e["detail"];
+    if (Object.keys(transfer.data).length > 0) {
+      restart();
+      fileSuccess(transfer.name, transfer.data);
+    } else {
+      fileFail(transfer.name);
+    }
+  };
+
+  const fileSuccess = (name, data) => {
+    $dataToRender = data;
+    fileName = name;
+    fileSize = (new TextEncoder().encode(JSON.stringify(data)).length / 1024)
         .toFixed(4)
         .toString() + " kB";
-    console.log(size);
-    $dataToRender = e["detail"].data;
-    window["jsonData"] = $dataToRender;
-    fileName = e["detail"].name;
-    fileSize = size;
-    restart();
+    
+    addToast({
+      message: fileName,
+      type: "success",
+      dismissible: true,
+      timeout: 5000,
+    });
+  };
+
+  const fileFail = (name) => {
+    addToast({
+      message: name,
+      type: "error",
+      dismissible: true,
+      timeout: 5000,
+    });
   };
 
   const handleClear = () => {
@@ -42,6 +65,7 @@
 </script>
 
 <main>
+  <Notification />
   <HeroBanner>
     <HeroCta />
     <FileDrop on:upload={handleUpload} />

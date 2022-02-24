@@ -3,8 +3,8 @@
 
 <div class="herotext">
   <div class="title">
-    <h1>Vis<strong>Config</strong></h1>
-    <span>v.01</span>
+    <img class="visconfig-logo" src="assets/visconfig-logo.svg" alt="visconfig logo">
+    <span>v1.0</span>
   </div>
   <div class="cta">
     <p>JSON</p>
@@ -27,6 +27,11 @@
     margin: 0 12px;
     color: #52525b;
     font-style: italic;
+  }
+
+  .visconfig-logo {
+    height: 92px;
+    width: auto;
   }
   .title {
     display: flex;

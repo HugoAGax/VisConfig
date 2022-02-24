@@ -1,8 +1,9 @@
 <script lang="ts">
   import { createEventDispatcher } from "svelte";
+  import DropArea from "./../forms/DropArea.svelte";
 
   const dispatch = createEventDispatcher();
-  let textarea;
+  let textarea: object;
 
   const _dispatchFileData = (name, data) => {
     dispatch("upload", {
@@ -10,23 +11,31 @@
       data: data,
     });
   };
-  let files: object;
 
   const onFileSelected = (e) => {
     let doc = e.target.files[0];
+    readFile(doc);
+  };
 
+  const onFileDrop = (e) => readFile(e.detail[0]);
+
+  const readFile = (doc) => {
     const fileread = new FileReader();
     fileread.onload = (evt: object) => {
-      console.log(evt);
-      const content = evt["target"].result;
-      _dispatchFileData(doc["name"], JSON.parse(content));
+      let jsonData : object;
+      try {
+        jsonData = JSON.parse(evt["target"].result);
+      } catch (e) {
+        console.log('ERROR CATCHED');
+        jsonData = {};
+      }
+      _dispatchFileData(doc["name"], jsonData);
     };
-
     fileread.readAsText(doc);
   };
 
   const buttonClickHandler = () => {
-    _dispatchFileData("", JSON.parse(textarea.value));
+    _dispatchFileData("", JSON.parse(textarea['value']));
   };
 </script>
 
@@ -38,7 +47,7 @@
     </button>
   </div>
   <div>
-    <div id="dropContainer" class="drop-container">
+    <DropArea on:filedrop={onFileDrop}>
       <img
         class="upload-icon"
         src="assets/cloud-arrow-up-solid.svg"
@@ -54,7 +63,7 @@
         accept=".json, .txt"
         on:change={(e) => onFileSelected(e)}
       />
-    </div>
+    </DropArea>
   </div>
 </div>
 
@@ -122,19 +131,6 @@
 
   .custom-file-upload:hover {
     text-decoration: underline;
-  }
-
-  .drop-container {
-    height: calc(100% - 2rem);
-    border: 1px dashed #c084fc;
-    border-radius: 0.5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 1rem;
-    color: #c084fc;
-    line-height: 1.3;
   }
 
   .upload-icon {

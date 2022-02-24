@@ -4,9 +4,9 @@
 
 <footer class="footer">
   <span>VisConfig a small learning project</span>
-  <a href="https://github.com/HugoAGax/VisConfig"
-    >Visit the GitHub respository</a
-  >
+  <a href="https://github.com/HugoAGax/VisConfig" target="_blank">
+    Visit the GitHub respository
+  </a>
   <span>Made with Svelte + TypeScript</span>
 </footer>
 

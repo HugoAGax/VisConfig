@@ -13,18 +13,18 @@ h6 {
   margin: 0;
 }
 :root {
-  --global-mid-grey: hsl(0, 0%, 47%);
-  --global-blue: hsl(217, 91%, 60%);
-  --global-green: hsl(158, 64%, 52%);
-  --global-purple: hsl(292, 84%, 61%);
-  --global-orange: hsl(25, 95%, 53%);
+  --global-mid-grey: #787878;
+  --global-blue: #3c83f6;
+  --global-green: #36d399;
+  --global-purple: #d948ef;
+  --global-orange: #f97415;
 
-  --global-pastel-pink: hsl(348, 68%, 78%);
-  --global-pastel-orange: hsl(10, 62%, 69%);
-  --global-pastel-yellow: hsl(56, 89%, 67%);
-  --global-pastel-green: hsl(100, 60%, 64%);
-  --global-pastel-blue: hsl(180, 35%, 81%);
-  --global-pastel-green: hsl(282, 26%, 75%);
+  --global-pastel-pink: #eda1b0;
+  --global-pastel-orange: #e18f7f;
+  --global-pastel-yellow: #f6ec60;
+  --global-pastel-green: #91da6c;
+  --global-pastel-blue: #bee0e0;
+  --global-pastel-green: #c6afd0;
 }
 
 * {
