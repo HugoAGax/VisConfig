@@ -1,11 +1,8 @@
 <script lang="ts">
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("SUBMIT CATCHED");
-    console.log(e);
     const data = new FormData(e.target);
     const value = Object.fromEntries(data.entries());
-    console.log(data);
   };
 </script>
 

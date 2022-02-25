@@ -1,17 +1,25 @@
 <script lang="ts">
   import "../../variables.css";
+  import { createEventDispatcher } from "svelte";
 
   export let type: string;
   export let value: string;
   export let name: string;
 
-  const handleKeydown = (e) => {
-    console.log("EVENT", e);
+  const dispatch = createEventDispatcher();
+  const handleKeyup = (e) => {
+    console.log("CommonInput::keyup", e.target.value);
+    dispatch("update", {
+      value: e.target.value,
+      name: name
+    });
+    value = e.target.value;
   };
+  
 </script>
 
 <div class="input-container">
-  <input class="input" id={name} {type} {value} on:keydown={handleKeydown} />
+  <input class="input" id={name} {type} {value} on:keyup={handleKeyup} />
 </div>
 
 <style>

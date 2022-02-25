@@ -1,9 +1,21 @@
 <script lang="ts">
   export let options: Array<string>;
   export let selected: string;
+
+  import { createEventDispatcher } from "svelte";
+
+  const dispatch = createEventDispatcher();
+  const handleChange = (e) => {
+    console.log("CommonDropdown::keyup", e.target.value);
+    dispatch("update", {
+      value: e.target.value === 'true' ? true : false,
+      name: ''
+    });
+    selected = e.target.value;
+  };
 </script>
 
-<select class="dropdown" bind:value={selected}>
+<select class="dropdown" bind:value={selected} on:change={handleChange}>
   {#each options as opt}
     <option value={opt} selected>
       {opt}

@@ -7,7 +7,6 @@ export const dismissToast = (id) => {
 };
 
 export const addToast = (toast) => {
-  console.log("ADDED TOAST");
   const id = Math.floor(Math.random() * 10000);
 
   const defaults = {

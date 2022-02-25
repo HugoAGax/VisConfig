@@ -2,19 +2,23 @@
   import CommonInput from "./CommonInput.svelte";
   import FormUnit from "./FormUnit.svelte";
   import CommonLabel from "./CommonLabel.svelte";
-
+  import { createEventDispatcher } from "svelte";
   import "../../variables.css";
 
   export let type: string;
   export let value: string;
   export let name: string;
 
-  let counter: number = 0;
+  const dispatch = createEventDispatcher();
+  const updateHandler = (data) => {
+    console.log('TextInput::update', data.detail);
+    dispatch("update", data.detail);
+  };
 </script>
 
 <FormUnit className={"textinput"} borderColor={"hsl(217, 91%, 60%)"}>
   <CommonLabel {type} {name} />
-  <CommonInput {type} {name} {value} />
+  <CommonInput {type} {name} {value} on:update={updateHandler}/>
 </FormUnit>
 
 <style>

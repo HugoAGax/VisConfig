@@ -20,7 +20,7 @@
 <div class="file-summary">
   <h3>{name}</h3>
   <p>{size}</p>
-  <button class="button save" type="submit">Save JSON</button>
+  <button class="button save" type="submit" on:click={saveButtonHandler}>Save JSON</button>
   <button class="button clear" on:click={clearButtonHandler}>Clear</button>
 </div>
 

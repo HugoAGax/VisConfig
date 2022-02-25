@@ -26,7 +26,6 @@
       try {
         jsonData = JSON.parse(evt["target"].result);
       } catch (e) {
-        console.log('ERROR CATCHED');
         jsonData = {};
       }
       _dispatchFileData(doc["name"], jsonData);

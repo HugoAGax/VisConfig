@@ -37,10 +37,11 @@
   const fileSuccess = (name, data) => {
     $dataToRender = data;
     fileName = name;
-    fileSize = (new TextEncoder().encode(JSON.stringify(data)).length / 1024)
+    fileSize =
+      (new TextEncoder().encode(JSON.stringify(data)).length / 1024)
         .toFixed(4)
         .toString() + " kB";
-    
+    window.jsonData = data;
     addToast({
       message: fileName,
       type: "success",
@@ -62,6 +63,15 @@
     $dataToRender = null;
     window["jsonData"] = $dataToRender;
   };
+
+  const handleSave = () => {
+    console.log("App General SAVE");
+  };
+
+  const handleUpdate = (e) => {
+    console.log('App::update', e.detail);
+    console.log('%cJSON Data to Output --->', 'background: yellow; color: blue; padding: 4px', e.detail.value);
+  }
 </script>
 
 <main>
@@ -75,9 +85,23 @@
   {#if $dataToRender}
     {#key unique}
       <FormContainer>
-        <FileSummary name={fileName} size={fileSize} on:clear={handleClear} />
-        <MultiRenderer dataToClassify={$dataToRender} objectName={""} />
-        <FileSummary name={fileName} size={fileSize} on:clear={handleClear} />
+        <FileSummary
+          name={fileName}
+          size={fileSize}
+          on:clear={handleClear}
+          on:save={handleSave}
+        />
+        <MultiRenderer
+          dataToClassify={$dataToRender}
+          objectName={""}
+          on:update={handleUpdate}
+        />
+        <FileSummary
+          name={fileName}
+          size={fileSize}
+          on:clear={handleClear}
+          on:save={handleSave}
+        />
       </FormContainer>
     {/key}
   {/if}

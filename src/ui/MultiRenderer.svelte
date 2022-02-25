@@ -3,10 +3,11 @@
   import CheckBox from "./forms/CheckBox.svelte";
   import TextInput from "./forms/TextInput.svelte";
   import NumberInput from "./forms/NumberInput.svelte";
+  import { createEventDispatcher } from "svelte";
 
   export let dataToClassify: object;
   export let objectName: string;
-
+  
   let instanceClassifier = new Classifier({
     data: dataToClassify,
     categories: {
@@ -19,8 +20,19 @@
 
   const result = objectName.replace(/([A-Z])/g, " $1");
   const finalResult = result.charAt(0).toUpperCase() + result.slice(1);
-
+  const dispatch = createEventDispatcher();
   let toRender = instanceClassifier.classifyAll();
+
+  const handleUpdate = (e) => {
+    console.log('MultiRender::update', e.detail);
+    console.log('DATA TO CHANGE', dataToClassify[e.detail.name]);
+    dataToClassify[e.detail.name] = e.detail.value;
+    console.log('DATA CHANGED', dataToClassify[e.detail.name]);
+    dispatch("update", {
+      value: dataToClassify,
+      name: objectName
+    });
+  }
 </script>
 
 <div class="multirender">
@@ -29,16 +41,20 @@
   {/if}
   {#each toRender as item}
     {#if item.cpt === "TextInput"}
-      <TextInput type={item.type} name={item.name} value={item.value} />
+      <TextInput type={item.type} name={item.name} value={item.value} on:update={handleUpdate}/>
     {/if}
     {#if item.cpt === "NumberInput"}
-      <NumberInput type={item.type} name={item.name} value={item.value} />
+      <NumberInput type={item.type} name={item.name} value={item.value} on:update={handleUpdate}/>
     {/if}
     {#if item.cpt === "CheckBox"}
-      <CheckBox type={item.type} name={item.name} value={item.value} />
+      <CheckBox type={item.type} name={item.name} value={item.value} on:update={handleUpdate}/>
     {/if}
     {#if item.cpt === "MultiRenderer"}
-      <svelte:self dataToClassify={item.value} objectName={item.name} />
+      <svelte:self
+        dataToClassify={item.value}
+        objectName={item.name}
+        on:update={handleUpdate}
+      />
     {/if}
   {/each}
 </div>

@@ -3,19 +3,26 @@
   import FormUnit from "./FormUnit.svelte";
   import "../../variables.css";
   import CommonDropdown from "./CommonDropdown.svelte";
+  import { createEventDispatcher } from "svelte";
 
   export let type: string;
   export let value: string;
   export let name: string;
 
   let dValue = value ? "true" : "false";
-
   let dropdownData = ["true", "false"];
+
+  const dispatch = createEventDispatcher();
+  const updateHandler = (data) => {
+    data.detail.name = name;
+    console.log('CheckBox::update', data.detail);
+    dispatch("update", data.detail);
+  };
 </script>
 
 <FormUnit className={"checkbox"} borderColor={"hsl(25, 95%, 53%)"}>
   <CommonLabel {type} {name} />
-  <CommonDropdown options={dropdownData} selected={dValue} />
+  <CommonDropdown options={dropdownData} selected={dValue} on:update={updateHandler}/>
 </FormUnit>
 
 <style>
