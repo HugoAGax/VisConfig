@@ -12,6 +12,8 @@
   import FileSummary from "./ui/forms/FileSummary.svelte";
   import Footer from "./ui/structure/Footer.svelte";
   import Notification from "./ui/structure/Notification.svelte";
+  import SimpleModal from "./ui/structure/SimpleModal.svelte";
+  import FileSave from "./filesave";
 
   $dataToRender = null;
 
@@ -19,6 +21,7 @@
   let fileSize: string;
 
   let unique = {};
+  let modal;
 
   const restart = () => {
     unique = {};
@@ -37,17 +40,24 @@
   const fileSuccess = (name, data) => {
     $dataToRender = data;
     fileName = name;
-    fileSize =
-      (new TextEncoder().encode(JSON.stringify(data)).length / 1024)
-        .toFixed(4)
-        .toString() + " kB";
-    window.jsonData = data;
+    fileSize = calculateFileSize(data);
+
+    window["_jsonStorage"] = data;
+    window["filename"] = fileName;
     addToast({
       message: fileName,
       type: "success",
       dismissible: true,
       timeout: 5000,
     });
+  };
+
+  const calculateFileSize = (data) => {
+    return (
+      (new TextEncoder().encode(JSON.stringify(data)).length / 1024)
+        .toFixed(4)
+        .toString() + " kB"
+    );
   };
 
   const fileFail = (name) => {
@@ -61,19 +71,36 @@
 
   const handleClear = () => {
     $dataToRender = null;
-    window["jsonData"] = $dataToRender;
+    window["_jsonStorage"] = $dataToRender;
   };
 
   const handleSave = () => {
-    console.log("App General SAVE");
+    modal.setFileName(fileName);
+    modal.setFileSize(fileSize);
+    modal.activate();
   };
 
   const handleUpdate = (e) => {
-    console.log('App::update', e.detail);
-    console.log('%cJSON Data to Output --->', 'background: yellow; color: blue; padding: 4px', e.detail.value);
-  }
+    console.log(
+      "%cJSON Data to Output --->",
+      "background: yellow; color: blue; padding: 4px",
+      e.detail.value
+    );
+    window["_jsonStorage"] = e.detail.value;
+    fileSize = calculateFileSize(e.detail.value);
+  };
+
+  const saveFile = (e) => {
+    let setFileSave = new FileSave();
+    setFileSave.download(
+      JSON.stringify(window["_jsonStorage"]),
+      e.detail.filename,
+      "text/plain"
+    );
+  };
 </script>
 
+<SimpleModal bind:this={modal} on:saveFile={saveFile} />
 <main>
   <Notification />
   <HeroBanner>

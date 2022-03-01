@@ -1,7 +1,7 @@
 <script lang="ts">
-  import CommonInput from "./CommonInput.svelte";
+  import CommonInput from "./common/CommonInput.svelte";
   import FormUnit from "./FormUnit.svelte";
-  import CommonLabel from "./CommonLabel.svelte";
+  import CommonLabel from "./common/CommonLabel.svelte";
   import { createEventDispatcher } from "svelte";
   import "../../variables.css";
 
@@ -11,7 +11,6 @@
 
   const dispatch = createEventDispatcher();
   const updateHandler = (data) => {
-    console.log('TextInput::update', data.detail);
     dispatch("update", data.detail);
   };
 </script>

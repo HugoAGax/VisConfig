@@ -1,5 +1,5 @@
 <script lang="ts">
-  import "../../variables.css";
+  import "../../../variables.css";
   import { createEventDispatcher } from "svelte";
 
   export let type: string;
@@ -8,7 +8,6 @@
 
   const dispatch = createEventDispatcher();
   const handleKeyup = (e) => {
-    console.log("CommonInput::keyup", e.target.value);
     dispatch("update", {
       value: e.target.value,
       name: name

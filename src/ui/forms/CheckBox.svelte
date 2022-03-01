@@ -1,8 +1,8 @@
 <script lang="ts">
-  import CommonLabel from "./CommonLabel.svelte";
+  import CommonLabel from "./common/CommonLabel.svelte";
   import FormUnit from "./FormUnit.svelte";
   import "../../variables.css";
-  import CommonDropdown from "./CommonDropdown.svelte";
+  import CommonDropdown from "./common/CommonDropdown.svelte";
   import { createEventDispatcher } from "svelte";
 
   export let type: string;
@@ -15,7 +15,6 @@
   const dispatch = createEventDispatcher();
   const updateHandler = (data) => {
     data.detail.name = name;
-    console.log('CheckBox::update', data.detail);
     dispatch("update", data.detail);
   };
 </script>

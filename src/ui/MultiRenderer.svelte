@@ -24,10 +24,7 @@
   let toRender = instanceClassifier.classifyAll();
 
   const handleUpdate = (e) => {
-    console.log('MultiRender::update', e.detail);
-    console.log('DATA TO CHANGE', dataToClassify[e.detail.name]);
     dataToClassify[e.detail.name] = e.detail.value;
-    console.log('DATA CHANGED', dataToClassify[e.detail.name]);
     dispatch("update", {
       value: dataToClassify,
       name: objectName

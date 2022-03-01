@@ -1,5 +1,5 @@
 <script lang="ts">
-  import "../../variables.css";
+  import "../../../variables.css";
 
   export let type: string;
   export let name: string;

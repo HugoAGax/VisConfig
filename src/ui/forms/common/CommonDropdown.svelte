@@ -6,7 +6,6 @@
 
   const dispatch = createEventDispatcher();
   const handleChange = (e) => {
-    console.log("CommonDropdown::keyup", e.target.value);
     dispatch("update", {
       value: e.target.value === 'true' ? true : false,
       name: ''
