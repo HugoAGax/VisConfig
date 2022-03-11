@@ -73,6 +73,6 @@
   }
 
   :global(.numberinput .label) {
-    color: var(--global-green);
+    color: #36d399;
   }
 </style>

@@ -28,6 +28,6 @@
   }
 
   :global(.textinput .label) {
-    color: var(--global-blue);
+    color: #3c83f6;
   }
 </style>

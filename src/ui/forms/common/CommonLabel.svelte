@@ -27,6 +27,6 @@
   }
 
   .label span {
-    color: var(--global-mid-grey);
+    color: #787878;
   }
 </style>

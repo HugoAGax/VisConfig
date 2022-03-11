@@ -27,11 +27,11 @@
 <style>
   :global(.checkbox) {
     position: relative;
-    border-color: var(--global-orange);
+    border-color: #f97415;
     padding: 1rem 0.75rem;
   }
 
   :global(.checkbox .label) {
-    color: var(--global-orange);
+    color: #f97415;
   }
 </style>

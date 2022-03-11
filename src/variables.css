@@ -12,20 +12,6 @@ h5,
 h6 {
   margin: 0;
 }
-:root {
-  --global-mid-grey: #787878;
-  --global-blue: #3c83f6;
-  --global-green: #36d399;
-  --global-purple: #d948ef;
-  --global-orange: #f97415;
-
-  --global-pastel-pink: #eda1b0;
-  --global-pastel-orange: #e18f7f;
-  --global-pastel-yellow: #f6ec60;
-  --global-pastel-green: #91da6c;
-  --global-pastel-blue: #bee0e0;
-  --global-pastel-green: #c6afd0;
-}
 
 * {
   font-family: "IBM Plex Sans Thai Looped", sans-serif;
